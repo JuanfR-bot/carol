@@ -1,0 +1,41 @@
+import 'package:flutter/material.dart';
+
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
+
+  void mostrarMensaje(BuildContext context, String mensaje) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(title: Text(mensaje));
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("EJERCICIO"), backgroundColor: Colors.blue),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: ListView.builder(
+          itemCount: 5,
+          itemBuilder: ((context, index) {
+            return Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                title: Text("elemento no${index}"),
+                tileColor: Colors.blue,
+                leading: Icon(Icons.abc),
+                trailing: Icon(Icons.abc_outlined),
+                onTap: () {
+                  mostrarMensaje(context, "tocaste el elmento numero ${index}");
+                },
+              ),
+            );
+          }),
+        ),
+      ),
+    );
+  }
+}
